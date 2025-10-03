@@ -1,27 +1,27 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 
-export interface RoleAttributes {
-    id_role: number;
+export interface DocumentTypesAttributes {
+    id_document_type: number;
     name: string;
     is_active: boolean;
 }
 
-class Role extends Model<RoleAttributes> implements RoleAttributes {
-    public id_role!: number;
+class DocumentType extends Model<DocumentTypesAttributes> implements DocumentTypesAttributes {
+    public id_document_type!: number;
     public name!: string;
     public is_active!: boolean;
 }
 
-Role.init(
+DocumentType.init(
     {
-        id_role: {
+        id_document_type: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
         name: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.STRING(100),
             allowNull: false,
             unique: true,
         },
@@ -33,10 +33,10 @@ Role.init(
     },
     {
         sequelize,
-        modelName: 'Role',
-        tableName: 'roles',
+        modelName: 'DocumentType',
+        tableName: 'document_types',
         timestamps: false,
     }
 )
 
-export default Role;
+export default DocumentType;
