@@ -6,7 +6,6 @@ export interface AccessesAttributes {
     role_id?: number;
     username: string;
     password: string;
-    is_active: boolean;
 }
 
 class Access extends Model<AccessesAttributes> implements AccessesAttributes {
@@ -14,7 +13,6 @@ class Access extends Model<AccessesAttributes> implements AccessesAttributes {
     public role_id?: number;
     public username!: string;
     public password!: string;
-    public is_active!: boolean;
 }
 
 Access.init(
@@ -40,12 +38,7 @@ Access.init(
         password: {
             type: DataTypes.STRING(255),
             allowNull: false,
-        },
-        is_active: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: true,
-        },
+        }
     },
     {
         sequelize,
