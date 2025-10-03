@@ -3,13 +3,17 @@ import sequelize from '../config/database';
 
 export interface AccessesAttributes {
     id_access: number;
-    name: string;
+    role_id?: number;
+    username: string;
+    password: string;
     is_active: boolean;
 }
 
 class Access extends Model<AccessesAttributes> implements AccessesAttributes {
     public id_access!: number;
-    public name!: string;
+    public role_id?: number;
+    public username!: string;
+    public password!: string;
     public is_active!: boolean;
 }
 
@@ -20,10 +24,22 @@ Access.init(
             autoIncrement: true,
             primaryKey: true,
         },
-        name: {
-            type: DataTypes.STRING(100),
+        role_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'roles',
+                key: 'id_role',
+            },
+        },
+        username: {
+            type: DataTypes.STRING(50),
             allowNull: false,
             unique: true,
+        },
+        password: {
+            type: DataTypes.STRING(255),
+            allowNull: false,
         },
         is_active: {
             type: DataTypes.BOOLEAN,
