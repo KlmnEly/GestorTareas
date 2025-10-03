@@ -70,3 +70,5 @@ Task.init(
         timestamps: false,
     }
 )
+
+export default Task;
