@@ -2,8 +2,8 @@ export interface CreateTaskDTO {
     user_id: number;
     task_status_id: number;
     name: string;
-    description: string;
-    date?: string;
+    description?: string;
+    date?: Date;
     is_active?: boolean;
 }
 
@@ -12,7 +12,7 @@ export interface UpdateTaskDTO {
     task_status_id?: number;
     name?: string;
     description?: string;
-    date?: string;
+    date?: Date;
     is_active?: boolean;
 }
 
@@ -21,7 +21,7 @@ export interface TaskResponseDTO {
     userId: number;
     taskStatusId: number;
     name: string;
-    description: string | null;
+    description: string;
     date: Date;
     isActive: boolean;
 }
@@ -31,7 +31,7 @@ export const toTaskResponseDTO = (task: {
     user_id: number,
     task_status_id: number,
     name: string,
-    description: string | null,
+    description?: string | null,
     date: Date,
     is_active: boolean
 }): TaskResponseDTO => {
@@ -40,7 +40,7 @@ export const toTaskResponseDTO = (task: {
         userId: task.user_id,
         taskStatusId: task.task_status_id,
         name: task.name,
-        description: task.description ?? null,
+        description: task.description ?? '',
         date: task.date,
         isActive: task.is_active,
     };

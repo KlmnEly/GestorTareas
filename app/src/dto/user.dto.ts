@@ -28,7 +28,7 @@ export interface UserResponseDTO {
 
 export const toUserResponseDTO = (user: {
     id_user: number,
-    access_id: number | undefined,
+    access_id?: number,
     document_type_id: number,
     fullname: string,
     document_number: string,
@@ -37,7 +37,7 @@ export const toUserResponseDTO = (user: {
 }): UserResponseDTO => {
     return {
         id: user.id_user,
-        accessId: user.access_id ?? null,
+        accessId: user.access_id || null,
         documentTypeId: user.document_type_id,
         fullname: user.fullname,
         documentNumber: user.document_number,

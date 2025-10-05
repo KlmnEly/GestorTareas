@@ -50,8 +50,7 @@ Task.init(
         },
         description: {
             type: DataTypes.TEXT,
-            allowNull: true,
-            defaultValue: null,
+            allowNull: true
         },
         date: {
             type: DataTypes.DATE,
