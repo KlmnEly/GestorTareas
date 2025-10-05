@@ -83,4 +83,13 @@ Asegúrate de tener **Docker** y **Docker Compose** instalados en tu sistema.
 4.  **Verificar la ejecución:**
     La API debería estar disponible en `http://localhost:3000`.
 
+## Endpoints
+```http://localhost:3000/api/v1/roles```
+```http://localhost:3000/api/v1/document-types```
+```http://localhost:3000/api/v1/task-status```
+```http://localhost:3000/api/v1/accesses```
+```http://localhost:3000/api/v1/users```
+```http://localhost:3000/api/v1/tasks```
+
+
 ---
