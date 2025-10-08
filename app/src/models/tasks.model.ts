@@ -1,24 +1,33 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 
+import User from './users.model'; 
+import GroupTask from './group_tasks.model'; 
+import TaskStatus from './task_status.model'; 
+
 export interface TaskAttributes {
     id_task: number;
+    group_task_id: number;
     user_id: number;
     task_status_id: number;
     name: string;
     description?: string;
-    date: Date;
-    is_active: boolean;
+    date?: Date;
+    is_active?: boolean;
 }
 
 class Task extends Model<TaskAttributes> implements TaskAttributes {
     public id_task!: number;
+    group_task_id!: number;
     public user_id!: number;
     public task_status_id!: number;
     public name!: string;
     public description?: string;
-    public date!: Date;
-    public is_active!: boolean;
+    public date?: Date;
+    public is_active?: boolean;
+    public user?: User; 
+    public groupTask?: GroupTask; 
+    public taskStatus?: TaskStatus;
 }
 
 Task.init(
@@ -27,6 +36,14 @@ Task.init(
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
+        },
+        group_task_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'group_tasks',
+                key: 'id_group_task',
+            },
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -54,11 +71,11 @@ Task.init(
         },
         date: {
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
         },
         is_active: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
+            allowNull: true,
             defaultValue: true,
         },
     },

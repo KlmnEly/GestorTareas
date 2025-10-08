@@ -6,6 +6,7 @@ import Role from "./roles.model";
 import Task from "./tasks.model";
 import User from "./users.model";
 import TaskStatus from "./task_status.model";
+import GroupTask from "./group_tasks.model";
 
 import { applyAssociations } from "./associations";
 
@@ -32,5 +33,6 @@ export {
     Role,
     Task,
     User,
-    TaskStatus
+    TaskStatus,
+    GroupTask
 };

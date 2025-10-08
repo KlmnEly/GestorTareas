@@ -46,6 +46,18 @@ services:
     networks:
       - backend
 
+  frontend:
+    build:
+      context: ../gestor-tareas-frontend
+      dockerfile: Dockerfile
+    container_name: gestor_tareas_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    networks:
+      - backend
+
 volumes:
   db_data:
 

@@ -16,6 +16,15 @@ CREATE TABLE task_status (
 	is_active BOOLEAN DEFAULT TRUE
 );
 
+CREATE TABLE group_tasks (
+	id_group_task SERIAL PRIMARY KEY,
+	name VARCHAR(255) NOT NULL UNIQUE,
+	description TEXT,
+	date DATE NOT NULL,
+	is_done BOOLEAN DEFAULT FALSE,
+	is_active BOOLEAN DEFAULT TRUE
+);
+
 CREATE TABLE accesses (
 	id_access SERIAL PRIMARY KEY,
 	role_id INT DEFAULT 1,
@@ -45,9 +54,9 @@ CREATE TABLE users (
 		REFERENCES document_types (id_document_type)
 );
 
-
 CREATE TABLE tasks (
 	id_task SERIAL PRIMARY KEY,
+	group_task_id INT,
 	user_id INT NOT NULL,
 	task_status_id INT DEFAULT 1,
 	name VARCHAR(255) NOT NULL,
@@ -55,6 +64,10 @@ CREATE TABLE tasks (
 	date DATE NOT NULL,
 	is_active BOOLEAN DEFAULT TRUE,
 	
+	CONSTRAINT fk_group_task
+		FOREIGN KEY (group_task_id)
+		REFERENCES group_tasks (id_group_task),
+
 	CONSTRAINT fk_user
 		FOREIGN KEY (user_id)
 		REFERENCES users (id_user),

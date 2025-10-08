@@ -4,6 +4,7 @@ import TaskStatus from './task_status.model';
 import Access from './accesses.model';
 import User from './users.model';
 import Task from './tasks.model';
+import GroupTask from './group_tasks.model';
 
 export const applyAssociations = () => {
     // Accesses y Roles (Uno a Muchos)
@@ -59,5 +60,16 @@ export const applyAssociations = () => {
     Task.belongsTo(TaskStatus, { 
         foreignKey: 'task_status_id',
         as: 'taskStatus'
+    });
+
+    // Tasks y GroupTasks (Uno a Muchos)
+    // Una tarea de grupo puede tener muchas tareas, pero una tarea pertenece a una sola tarea de grupo
+    GroupTask.hasMany(Task, { 
+        foreignKey: 'group_task_id',
+        as: 'tasks'
+    });
+    Task.belongsTo(GroupTask, { 
+        foreignKey: 'group_task_id',
+        as: 'groupTask'
     });
 }
